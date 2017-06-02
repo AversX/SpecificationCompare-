@@ -1,0 +1,22 @@
+C:\Users\User\Desktop\SpecificationCompare\SpecificationCompare\bin\Debug\SpecificationCompare.exe.config
+C:\Users\User\Desktop\SpecificationCompare\SpecificationCompare\bin\Debug\SpecificationCompare.exe
+C:\Users\User\Desktop\SpecificationCompare\SpecificationCompare\bin\Debug\SpecificationCompare.pdb
+C:\Users\User\Desktop\SpecificationCompare\SpecificationCompare\bin\Debug\MetroFramework.dll
+C:\Users\User\Desktop\SpecificationCompare\SpecificationCompare\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\User\Desktop\SpecificationCompare\SpecificationCompare\obj\Debug\SpecificationCompare.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\SpecificationCompare\SpecificationCompare\obj\Debug\SpecificationCompare.MainForm.resources
+C:\Users\User\Desktop\SpecificationCompare\SpecificationCompare\obj\Debug\SpecificationCompare.Properties.Resources.resources
+C:\Users\User\Desktop\SpecificationCompare\SpecificationCompare\obj\Debug\SpecificationCompare.csproj.GenerateResource.Cache
+C:\Users\User\Desktop\SpecificationCompare\SpecificationCompare\obj\Debug\SpecificationCompare.exe
+C:\Users\User\Desktop\SpecificationCompare\SpecificationCompare\obj\Debug\SpecificationCompare.pdb
+C:\Users\User\Desktop\SpecificationCompare — копия\SpecificationCompare\bin\Debug\SpecificationCompare.exe.config
+C:\Users\User\Desktop\SpecificationCompare — копия\SpecificationCompare\bin\Debug\SpecificationCompare.exe
+C:\Users\User\Desktop\SpecificationCompare — копия\SpecificationCompare\bin\Debug\SpecificationCompare.pdb
+C:\Users\User\Desktop\SpecificationCompare — копия\SpecificationCompare\bin\Debug\MetroFramework.dll
+C:\Users\User\Desktop\SpecificationCompare — копия\SpecificationCompare\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\User\Desktop\SpecificationCompare — копия\SpecificationCompare\obj\Debug\SpecificationCompare.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\SpecificationCompare — копия\SpecificationCompare\obj\Debug\SpecificationCompare.MainForm.resources
+C:\Users\User\Desktop\SpecificationCompare — копия\SpecificationCompare\obj\Debug\SpecificationCompare.Properties.Resources.resources
+C:\Users\User\Desktop\SpecificationCompare — копия\SpecificationCompare\obj\Debug\SpecificationCompare.csproj.GenerateResource.Cache
+C:\Users\User\Desktop\SpecificationCompare — копия\SpecificationCompare\obj\Debug\SpecificationCompare.exe
+C:\Users\User\Desktop\SpecificationCompare — копия\SpecificationCompare\obj\Debug\SpecificationCompare.pdb
