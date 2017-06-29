@@ -12,42 +12,24 @@ namespace SpecificationCompare
 {
     struct Unit
     {
-<<<<<<< HEAD
         List<string> columns;
-=======
-        string pos;
-        string article;
-        string name;
-        string number;
-        string measure;
-        string manufacture;
-
-
->>>>>>> 2f4e78a3154cfa65e2d46d0334ab19cfbd148bf8
         List<Error> errors;
         bool finded;
 
-<<<<<<< HEAD
         public List<string> Columns { get => columns; set => columns = value; }
-=======
-        public string Manufacture { get => manufacture; set => manufacture = value; }
-        public string Measure { get => measure; set => measure = value; }
-        public string Name { get => name; set => name = value; }
-        public string Article { get => article; set => article = value; }
-        public string Pos { get => pos; set => pos = value; }
-        public string Number { get => number; set => number = value; }
->>>>>>> 2f4e78a3154cfa65e2d46d0334ab19cfbd148bf8
         public bool Finded { get => finded; set => finded = value; }
         internal List<Error> Errors { get => errors; set => errors = value; }
     }
 
     struct Error
     {
-        int errorCode;
+        string errorCode;
         string oldValue;
+        int colNumber;
 
-        public int ErrorCode { get => errorCode; set => errorCode = value; }
+        public string ErrorCode { get => errorCode; set => errorCode = value; }
         public string OldValue { get => oldValue; set => oldValue = value; }
+        public int ColNumber { get => colNumber; set => colNumber = value; }
     }
 
     public partial class MainForm : MetroFramework.Forms.MetroForm
@@ -113,6 +95,7 @@ namespace SpecificationCompare
             {
                 if (artColTBox.Text != "") artCol = int.Parse(artColTBox.Text) - 1;
                 if (nameColTBox.Text != "") nameCol = int.Parse(nameColTBox.Text) - 1;
+
                 List<Unit> Units = new List<Unit>();
                 
                 List<Unit> OldUnits = new List<Unit>();
@@ -121,7 +104,12 @@ namespace SpecificationCompare
                 List<Unit> NewUnits = new List<Unit>();
                 NewUnits.AddRange(LoadDataSpec(newVerTxt.Text));
 
+                metroProgressBar1.Visible = true;
+                metroProgressBar1.Minimum = 0;
+                metroProgressBar1.Value = 0;
+
                 Units = Consolidate(OldUnits, NewUnits);
+                metroProgressBar1.Maximum = Units.Count;
                 UploadData(Units);
             }
         }
@@ -143,33 +131,21 @@ namespace SpecificationCompare
             adapter.Fill(dataSet);
             connection.Close();
 
-            colNum = dataSet.Tables[0].Columns.Count;
             for (int row = 0; row < dataSet.Tables[0].Rows.Count; row++)
             {
                 if (dataSet.Tables[0].Rows[row][artCol].ToString().Length > 0 || dataSet.Tables[0].Rows[row][nameCol].ToString().Length > 0)
                 {
-<<<<<<< HEAD
                     Unit unit = new Unit();
                     unit.Columns = new List<string>();
                     unit.Errors = new List<Error>();
                     unit.Finded = false;
                     for (int j = 0; j < dataSet.Tables[0].Columns.Count; j++)
                         unit.Columns.Add(dataSet.Tables[0].Rows[row][j].ToString().Trim());
-=======
-                    Unit unit = new Unit()
-                    {
-                        Pos = dataSet.Tables[0].Rows[row][1].ToString().Trim(),
-                        Article = dataSet.Tables[0].Rows[row][2].ToString().Trim(),
-                        Name = dataSet.Tables[0].Rows[row][3].ToString().Trim(),
-                        Number = dataSet.Tables[0].Rows[row][4].ToString().Trim(),
-                        Measure = dataSet.Tables[0].Rows[row][5].ToString().Trim(),
-                        Manufacture = dataSet.Tables[0].Rows[row][6].ToString().Trim(),
-                        Finded = false
-                    };
->>>>>>> 2f4e78a3154cfa65e2d46d0334ab19cfbd148bf8
+                    while (unit.Columns[unit.Columns.Count-1] == "") unit.Columns.RemoveAt(unit.Columns.Count - 1);
                     units.Add(unit);
                 }
             }
+            colNum = units[0].Columns.Count;
             return units;
         }
 
@@ -187,7 +163,7 @@ namespace SpecificationCompare
                                 oldUnits.Insert(i, newUnits[j]);
                                 Unit unit = oldUnits[i];
                                 List<Error> errors = unit.Errors;
-                                errors.Add(new Error() { ErrorCode = 6 });
+                                errors.Add(new Error() { ErrorCode = "REPEAT" });
                                 if (unit.Errors == null) unit.Errors = new List<Error>(errors);
                                 else unit.Errors = errors;
                                 oldUnits[i] = unit;
@@ -198,37 +174,15 @@ namespace SpecificationCompare
                             else
                             {
                                 Unit unit = oldUnits[i];
-<<<<<<< HEAD
                                 List<Error> errors = oldUnits[i].Errors;
                                 for (int c = 0; c < oldUnits[i].Columns.Count; c++)
-=======
-                                List<Error> errors = new List<Error>();
-                                if (oldUnits[i].Pos != newUnits[j].Pos)
-                                {
-                                    errors.Add(new Error
-                                    {
-                                        ErrorCode = 0,
-                                        OldValue = oldUnits[i].Pos
-                                    });
-                                    unit.Pos = newUnits[j].Pos;
-                                }
-                                if (oldUnits[i].Name != newUnits[j].Name)
-                                {
-                                    errors.Add(new Error
-                                    {
-                                        ErrorCode = 2,
-                                        OldValue = oldUnits[i].Name
-                                    });
-                                    unit.Name = newUnits[j].Name;
-                                }
-                                if (oldUnits[i].Number != newUnits[j].Number)
->>>>>>> 2f4e78a3154cfa65e2d46d0334ab19cfbd148bf8
                                 {
                                     if (oldUnits[i].Columns[c].Replace(".", "") != newUnits[j].Columns[c].Replace(".", ""))
                                     {
                                         errors.Add(new Error
                                         {
-                                            ErrorCode = c,
+                                            ErrorCode = "CHANGE",
+                                            ColNumber = c,
                                             OldValue = oldUnits[i].Columns[c]
                                         });
                                         unit.Columns[c] = newUnits[j].Columns[c];
@@ -248,7 +202,7 @@ namespace SpecificationCompare
                                 oldUnits.Insert(i, newUnits[j]);
                                 Unit unit = oldUnits[i];
                                 List<Error> errors = new List<Error>();
-                                errors.Add(new Error() { ErrorCode = 6 });
+                                errors.Add(new Error() { ErrorCode = "REPEAT" });
                                 if (unit.Errors == null) unit.Errors = new List<Error>(errors);
                                 else unit.Errors.AddRange(errors);
                                 oldUnits[i] = unit;
@@ -259,30 +213,19 @@ namespace SpecificationCompare
                             else
                             {
                                 Unit unit = oldUnits[i];
-<<<<<<< HEAD
                                 List<Error> errors = oldUnits[i].Errors;
                                 for (int c = 0; c < oldUnits[i].Columns.Count; c++)
-=======
-                                List<Error> errors = new List<Error>();
-                                if (oldUnits[i].Pos != newUnits[j].Pos)
->>>>>>> 2f4e78a3154cfa65e2d46d0334ab19cfbd148bf8
                                 {
                                     if (oldUnits[i].Columns[c].Replace(".", "") != newUnits[j].Columns[c].Replace(".", ""))
                                     {
-<<<<<<< HEAD
                                         errors.Add(new Error
                                         {
-                                            ErrorCode = c,
+                                            ErrorCode = "CHANGE",
+                                            ColNumber = c,
                                             OldValue = oldUnits[i].Columns[c]
                                         });
                                         unit.Columns[c] = newUnits[j].Columns[c];
                                     }
-=======
-                                        ErrorCode = 0,
-                                        OldValue = oldUnits[i].Pos
-                                    });
-                                    unit.Pos = newUnits[j].Pos;
->>>>>>> 2f4e78a3154cfa65e2d46d0334ab19cfbd148bf8
                                 }
                                 unit.Errors = errors;
                                 unit.Finded = true;
@@ -301,7 +244,7 @@ namespace SpecificationCompare
                                 oldUnits.Insert(i, newUnits[j]);
                                 Unit unit = oldUnits[i];
                                 List<Error> errors = unit.Errors;
-                                errors.Add(new Error() { ErrorCode = 6 });
+                                errors.Add(new Error() { ErrorCode = "REPEAT" });
                                 if (unit.Errors == null) unit.Errors = new List<Error>(errors);
                                 else unit.Errors = errors;
                                 oldUnits[i] = unit;
@@ -311,55 +254,15 @@ namespace SpecificationCompare
                             else
                             {
                                 Unit unit = oldUnits[i];
-<<<<<<< HEAD
                                 List<Error> errors = oldUnits[i].Errors;
                                 for (int c = 0; c < oldUnits[i].Columns.Count; c++)
-=======
-                                List<Error> errors = new List<Error>();
-                                if (oldUnits[i].Pos != newUnits[j].Pos)
-                                {
-                                    errors.Add(new Error
-                                    {
-                                        ErrorCode = 0,
-                                        OldValue = oldUnits[i].Pos
-                                    });
-                                    unit.Pos = newUnits[j].Pos;
-                                }
-                                if (oldUnits[i].Article != newUnits[j].Article)
-                                {
-                                    errors.Add(new Error
-                                    {
-                                        ErrorCode = 1,
-                                        OldValue = oldUnits[i].Article
-                                    });
-                                    unit.Name = newUnits[j].Name;
-                                }
-                                if (oldUnits[i].Number != newUnits[j].Number)
-                                {
-                                    errors.Add(new Error
-                                    {
-                                        ErrorCode = 3,
-                                        OldValue = oldUnits[i].Number
-                                    });
-                                    unit.Number = newUnits[j].Number;
-                                }
-                                if (oldUnits[i].Measure.Replace(".", "") != newUnits[j].Measure.Replace(".", ""))
-                                {
-                                    errors.Add(new Error
-                                    {
-                                        ErrorCode = 4,
-                                        OldValue = oldUnits[i].Measure
-                                    });
-                                    unit.Measure = newUnits[j].Measure;
-                                }
-                                if (oldUnits[i].Manufacture != newUnits[j].Manufacture)
->>>>>>> 2f4e78a3154cfa65e2d46d0334ab19cfbd148bf8
                                 {
                                     if (oldUnits[i].Columns[c].Replace(".", "") != newUnits[j].Columns[c].Replace(".", ""))
                                     {
                                         errors.Add(new Error
                                         {
-                                            ErrorCode = c,
+                                            ErrorCode = "CHANGE",
+                                            ColNumber = c,
                                             OldValue = oldUnits[i].Columns[c]
                                         });
                                         unit.Columns[c] = newUnits[j].Columns[c];
@@ -374,11 +277,12 @@ namespace SpecificationCompare
                         }
                     }
                 }
+            
             for (int j = 0; j < newUnits.Count; j++)
             {
                 Unit unit = newUnits[j];
                 List<Error> errors = unit.Errors;
-                errors.Add(new Error() { ErrorCode = 7 });
+                errors.Add(new Error() { ErrorCode = "NEW" });
                 if (unit.Errors == null) unit.Errors = new List<Error>(errors);
                 else unit.Errors.AddRange(errors);
                 oldUnits.Add(unit);
@@ -395,7 +299,6 @@ namespace SpecificationCompare
             Excel.Range autoFit;
 
             int curColumn = 1;
-<<<<<<< HEAD
             for (int i = 1; i <= colNum; i++)
             {
                 sheet.Columns[curColumn].NumberFormat = "@";
@@ -408,41 +311,6 @@ namespace SpecificationCompare
                 {
                     sheet.Cells[i + 1, j+1] = units[i].Columns[j];
                 }
-=======
-
-            //sheet.Cells[1, curColumn] = "Поз.";
-            sheet.Columns[curColumn].NumberFormat = "@";
-            curColumn++;
-
-            //sheet.Cells[1, curColumn] = "Код";
-            sheet.Columns[curColumn].NumberFormat = "@";
-            curColumn++;
-
-            //sheet.Cells[1, curColumn] = "Наименование";
-            sheet.Columns[curColumn].NumberFormat = "@";
-            curColumn++;
-
-            //sheet.Cells[1, curColumn] = "Кол-во";
-            sheet.Columns[curColumn].NumberFormat = "@";
-            curColumn++;
-
-            //sheet.Cells[1, curColumn] = "Ед. изм.";
-            sheet.Columns[curColumn].NumberFormat = "@";
-            curColumn++;
-
-            //sheet.Cells[1, curColumn] = "Завод изготовитель";
-            sheet.Columns[curColumn].NumberFormat = "@";
-            curColumn++;
-
-            for (int i = 0; i < units.Count; i++)
-            {
-                sheet.Cells[i + 1, curColumn - 6] = units[i].Pos;
-                sheet.Cells[i + 1, curColumn - 5] = units[i].Article;
-                sheet.Cells[i + 1, curColumn - 4] = units[i].Name;
-                sheet.Cells[i + 1, curColumn - 3] = units[i].Number;
-                sheet.Cells[i + 1, curColumn - 2] = units[i].Measure;
-                sheet.Cells[i + 1, curColumn - 1] = units[i].Manufacture;
->>>>>>> 2f4e78a3154cfa65e2d46d0334ab19cfbd148bf8
                 autoFit = (Excel.Range)sheet.Rows[i + 1];
                 autoFit.EntireRow.AutoFit();
                 for (int j = 1; j <= curColumn - 1; j++)
@@ -456,12 +324,15 @@ namespace SpecificationCompare
                     {
                         switch (units[i].Errors[j].ErrorCode)
                         {
-                            case 6: { ((Excel.Range)sheet.Rows[i + 1]).EntireRow.Interior.Color = Color.Blue; break; }
-                            case 7: { ((Excel.Range)sheet.Rows[i + 1]).EntireRow.Interior.Color = Color.Green; break; }
+                            case "REPEAT": { ((Excel.Range)sheet.Rows[i + 1]).EntireRow.Interior.Color = Color.Blue; break; }
+                            case "NEW": { ((Excel.Range)sheet.Rows[i + 1]).EntireRow.Interior.Color = Color.Green; break; }
                             default:
                                 {
-                                    sheet.Cells[i + 1, units[i].Errors[j].ErrorCode + 1].Interior.Color = Color.Red;
-                                    ((Excel.Range)sheet.Cells[i + 1, units[i].Errors[j].ErrorCode + 1]).AddComment(units[i].Errors[j].OldValue);
+                                    if (!buyChBox.Checked)
+                                    {
+                                        sheet.Cells[i + 1, units[i].Errors[j].ColNumber + 1].Interior.Color = Color.Red;
+                                        ((Excel.Range)sheet.Cells[i + 1, units[i].Errors[j].ColNumber + 1]).AddComment(units[i].Errors[j].OldValue);
+                                    }
                                     break;
                                 }
                         }
@@ -471,9 +342,10 @@ namespace SpecificationCompare
                 {
                     ((Excel.Range)sheet.Rows[i + 1]).EntireRow.Interior.Color = Color.Yellow;
                 }
-
+                metroProgressBar1.Value++;
             }
             excel.Visible = true;
+            metroProgressBar1.Visible = false;
         }
 
         private void columnsTBox_KeyPress(object sender, KeyPressEventArgs e)

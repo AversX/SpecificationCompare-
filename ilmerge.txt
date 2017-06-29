@@ -1,0 +1,1 @@
+ilmerge /t:winexe /out:SPCompare.exe SpecificationCompare\bin\Debug\SpecificationCompare.exe SpecificationCompare\bin\Debug\MetroFramework.Fonts.dll SpecificationCompare\bin\Debug\MetroFramework.dll

@@ -47,13 +47,15 @@
             this.headerChBox = new MetroFramework.Controls.MetroCheckBox();
             this.nameColTBox = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
+            this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
+            this.buyChBox = new MetroFramework.Controls.MetroCheckBox();
             this.SuspendLayout();
             // 
             // oldVerLabel
             // 
             this.oldVerLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.oldVerLabel.AutoSize = true;
-            this.oldVerLabel.Location = new System.Drawing.Point(5, 182);
+            this.oldVerLabel.Location = new System.Drawing.Point(5, 188);
             this.oldVerLabel.Name = "oldVerLabel";
             this.oldVerLabel.Size = new System.Drawing.Size(259, 19);
             this.oldVerLabel.Style = MetroFramework.MetroColorStyle.Yellow;
@@ -66,7 +68,7 @@
             // 
             this.SrchSpecOldBtn.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.SrchSpecOldBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SrchSpecOldBtn.Location = new System.Drawing.Point(334, 247);
+            this.SrchSpecOldBtn.Location = new System.Drawing.Point(334, 253);
             this.SrchSpecOldBtn.Name = "SrchSpecOldBtn";
             this.SrchSpecOldBtn.Size = new System.Drawing.Size(59, 23);
             this.SrchSpecOldBtn.Style = MetroFramework.MetroColorStyle.Yellow;
@@ -80,7 +82,7 @@
             // 
             this.oldVerTxt.AllowDrop = true;
             this.oldVerTxt.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.oldVerTxt.Location = new System.Drawing.Point(5, 218);
+            this.oldVerTxt.Location = new System.Drawing.Point(5, 224);
             this.oldVerTxt.Name = "oldVerTxt";
             this.oldVerTxt.PromptText = "Текущая версия";
             this.oldVerTxt.Size = new System.Drawing.Size(388, 23);
@@ -93,7 +95,7 @@
             // 
             this.newVerTxt.AllowDrop = true;
             this.newVerTxt.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.newVerTxt.Location = new System.Drawing.Point(5, 290);
+            this.newVerTxt.Location = new System.Drawing.Point(5, 296);
             this.newVerTxt.Name = "newVerTxt";
             this.newVerTxt.PromptText = "Новая версия";
             this.newVerTxt.Size = new System.Drawing.Size(388, 23);
@@ -106,7 +108,7 @@
             // 
             this.SrchSpecNewBtn.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.SrchSpecNewBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SrchSpecNewBtn.Location = new System.Drawing.Point(334, 319);
+            this.SrchSpecNewBtn.Location = new System.Drawing.Point(334, 325);
             this.SrchSpecNewBtn.Name = "SrchSpecNewBtn";
             this.SrchSpecNewBtn.Size = new System.Drawing.Size(59, 23);
             this.SrchSpecNewBtn.Style = MetroFramework.MetroColorStyle.Yellow;
@@ -120,7 +122,7 @@
             // 
             this.compareBtn.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.compareBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.compareBtn.Location = new System.Drawing.Point(5, 358);
+            this.compareBtn.Location = new System.Drawing.Point(5, 364);
             this.compareBtn.Name = "compareBtn";
             this.compareBtn.Size = new System.Drawing.Size(388, 55);
             this.compareBtn.TabIndex = 6;
@@ -130,8 +132,9 @@
             // 
             // metroLabel1
             // 
+            this.metroLabel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(55, 435);
+            this.metroLabel1.Location = new System.Drawing.Point(55, 473);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(341, 57);
             this.metroLabel1.Style = MetroFramework.MetroColorStyle.Yellow;
@@ -143,24 +146,27 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.panel1.BackColor = System.Drawing.Color.Red;
-            this.panel1.Location = new System.Drawing.Point(6, 435);
+            this.panel1.Location = new System.Drawing.Point(6, 473);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(30, 19);
             this.panel1.TabIndex = 8;
             // 
             // panel2
             // 
+            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.panel2.BackColor = System.Drawing.Color.Blue;
-            this.panel2.Location = new System.Drawing.Point(6, 496);
+            this.panel2.Location = new System.Drawing.Point(6, 534);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(30, 19);
             this.panel2.TabIndex = 10;
             // 
             // metroLabel2
             // 
+            this.metroLabel2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(55, 496);
+            this.metroLabel2.Location = new System.Drawing.Point(55, 534);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(99, 19);
             this.metroLabel2.Style = MetroFramework.MetroColorStyle.Yellow;
@@ -171,16 +177,18 @@
             // 
             // panel3
             // 
+            this.panel3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.panel3.BackColor = System.Drawing.Color.Yellow;
-            this.panel3.Location = new System.Drawing.Point(6, 530);
+            this.panel3.Location = new System.Drawing.Point(6, 568);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(30, 19);
             this.panel3.TabIndex = 12;
             // 
             // metroLabel3
             // 
+            this.metroLabel3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(55, 530);
+            this.metroLabel3.Location = new System.Drawing.Point(55, 568);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(271, 19);
             this.metroLabel3.Style = MetroFramework.MetroColorStyle.Yellow;
@@ -191,8 +199,9 @@
             // 
             // metroLabel4
             // 
+            this.metroLabel4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.metroLabel4.AutoSize = true;
-            this.metroLabel4.Location = new System.Drawing.Point(55, 563);
+            this.metroLabel4.Location = new System.Drawing.Point(55, 601);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(274, 19);
             this.metroLabel4.Style = MetroFramework.MetroColorStyle.Yellow;
@@ -203,8 +212,9 @@
             // 
             // panel4
             // 
+            this.panel4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.panel4.BackColor = System.Drawing.Color.Green;
-            this.panel4.Location = new System.Drawing.Point(6, 563);
+            this.panel4.Location = new System.Drawing.Point(6, 601);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(30, 19);
             this.panel4.TabIndex = 12;
@@ -265,11 +275,37 @@
             this.metroLabel6.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.metroLabel6.UseStyleColors = true;
             // 
+            // metroProgressBar1
+            // 
+            this.metroProgressBar1.HideProgressText = false;
+            this.metroProgressBar1.Location = new System.Drawing.Point(6, 434);
+            this.metroProgressBar1.Name = "metroProgressBar1";
+            this.metroProgressBar1.Size = new System.Drawing.Size(387, 23);
+            this.metroProgressBar1.Style = MetroFramework.MetroColorStyle.Yellow;
+            this.metroProgressBar1.TabIndex = 18;
+            this.metroProgressBar1.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroProgressBar1.Visible = false;
+            // 
+            // buyChBox
+            // 
+            this.buyChBox.AutoSize = true;
+            this.buyChBox.Location = new System.Drawing.Point(287, 63);
+            this.buyChBox.Name = "buyChBox";
+            this.buyChBox.Size = new System.Drawing.Size(57, 15);
+            this.buyChBox.Style = MetroFramework.MetroColorStyle.Yellow;
+            this.buyChBox.TabIndex = 19;
+            this.buyChBox.Text = "Докуп";
+            this.buyChBox.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.buyChBox.UseStyleColors = true;
+            this.buyChBox.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(399, 592);
+            this.ClientSize = new System.Drawing.Size(399, 627);
+            this.Controls.Add(this.buyChBox);
+            this.Controls.Add(this.metroProgressBar1);
             this.Controls.Add(this.nameColTBox);
             this.Controls.Add(this.metroLabel6);
             this.Controls.Add(this.headerChBox);
@@ -320,6 +356,8 @@
         private MetroFramework.Controls.MetroCheckBox headerChBox;
         private MetroFramework.Controls.MetroTextBox nameColTBox;
         private MetroFramework.Controls.MetroLabel metroLabel6;
+        private MetroFramework.Controls.MetroProgressBar metroProgressBar1;
+        private MetroFramework.Controls.MetroCheckBox buyChBox;
     }
 }
 
