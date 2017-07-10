@@ -320,27 +320,30 @@ namespace SpecificationCompare
                 }
                 if (units[i].Errors != null)
                 {
-                    for (int j = 0; j < units[i].Errors.Count; j++)
+                    if (units[i].Errors.Count > 0)
                     {
-                        switch (units[i].Errors[j].ErrorCode)
+                        for (int j = 0; j < units[i].Errors.Count; j++)
                         {
-                            case "REPEAT": { ((Excel.Range)sheet.Rows[i + 1]).EntireRow.Interior.Color = Color.Blue; break; }
-                            case "NEW": { ((Excel.Range)sheet.Rows[i + 1]).EntireRow.Interior.Color = Color.Green; break; }
-                            default:
-                                {
-                                    if (!buyChBox.Checked)
+                            switch (units[i].Errors[j].ErrorCode)
+                            {
+                                case "REPEAT": { ((Excel.Range)sheet.Rows[i + 1]).EntireRow.Interior.Color = Color.Blue; break; }
+                                case "NEW": { ((Excel.Range)sheet.Rows[i + 1]).EntireRow.Interior.Color = Color.Green; break; }
+                                default:
                                     {
-                                        sheet.Cells[i + 1, units[i].Errors[j].ColNumber + 1].Interior.Color = Color.Red;
-                                        ((Excel.Range)sheet.Cells[i + 1, units[i].Errors[j].ColNumber + 1]).AddComment(units[i].Errors[j].OldValue);
+                                        if (!buyChBox.Checked)
+                                        {
+                                            sheet.Cells[i + 1, units[i].Errors[j].ColNumber + 1].Interior.Color = Color.Red;
+                                            ((Excel.Range)sheet.Cells[i + 1, units[i].Errors[j].ColNumber + 1]).AddComment(units[i].Errors[j].OldValue);
+                                        }
+                                        break;
                                     }
-                                    break;
-                                }
+                            }
                         }
                     }
-                }
-                else
-                {
-                    ((Excel.Range)sheet.Rows[i + 1]).EntireRow.Interior.Color = Color.Yellow;
+                    else
+                    {
+                        ((Excel.Range)sheet.Rows[i + 1]).EntireRow.Interior.Color = Color.Yellow;
+                    }
                 }
                 metroProgressBar1.Value++;
             }
