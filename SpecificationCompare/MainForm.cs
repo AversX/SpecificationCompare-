@@ -131,9 +131,25 @@ namespace SpecificationCompare
             adapter.Fill(dataSet);
             connection.Close();
 
+            colNum = 0;
             for (int row = 0; row < dataSet.Tables[0].Rows.Count; row++)
             {
-                if (dataSet.Tables[0].Rows[row][artCol].ToString().Length > 0 || dataSet.Tables[0].Rows[row][nameCol].ToString().Length > 0)
+                if (UprtChBox.Checked)
+                {
+                    if (dataSet.Tables[0].Rows[row][0].ToString().Length > 0)
+                    {
+                        Unit unit = new Unit();
+                        unit.Columns = new List<string>();
+                        unit.Errors = new List<Error>();
+                        unit.Finded = false;
+                        for (int j = 0; j < dataSet.Tables[0].Columns.Count; j++)
+                            unit.Columns.Add(dataSet.Tables[0].Rows[row][j].ToString().Trim());
+                        while (unit.Columns[unit.Columns.Count - 1] == "") unit.Columns.RemoveAt(unit.Columns.Count - 1);
+                        if (unit.Columns.Count > colNum) colNum = unit.Columns.Count;
+                        units.Add(unit);
+                    }
+                }
+                else if (dataSet.Tables[0].Rows[row][artCol].ToString().Length > 0 || dataSet.Tables[0].Rows[row][nameCol].ToString().Length > 0)
                 {
                     Unit unit = new Unit();
                     unit.Columns = new List<string>();
@@ -142,10 +158,14 @@ namespace SpecificationCompare
                     for (int j = 0; j < dataSet.Tables[0].Columns.Count; j++)
                         unit.Columns.Add(dataSet.Tables[0].Rows[row][j].ToString().Trim());
                     while (unit.Columns[unit.Columns.Count-1] == "") unit.Columns.RemoveAt(unit.Columns.Count - 1);
+                    if (unit.Columns.Count > colNum) colNum = unit.Columns.Count;
                     units.Add(unit);
                 }
             }
-            colNum = units[0].Columns.Count;
+           for (int i=0; i<units.Count; i++)
+            {
+                if (units[i].Columns.Count < colNum) { units.RemoveAt(i); i--; }
+            }
             return units;
         }
 

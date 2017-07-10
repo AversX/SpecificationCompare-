@@ -49,6 +49,7 @@
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.metroProgressBar1 = new MetroFramework.Controls.MetroProgressBar();
             this.buyChBox = new MetroFramework.Controls.MetroCheckBox();
+            this.UprtChBox = new MetroFramework.Controls.MetroCheckBox();
             this.SuspendLayout();
             // 
             // oldVerLabel
@@ -289,7 +290,7 @@
             // buyChBox
             // 
             this.buyChBox.AutoSize = true;
-            this.buyChBox.Location = new System.Drawing.Point(287, 63);
+            this.buyChBox.Location = new System.Drawing.Point(185, 63);
             this.buyChBox.Name = "buyChBox";
             this.buyChBox.Size = new System.Drawing.Size(57, 15);
             this.buyChBox.Style = MetroFramework.MetroColorStyle.Yellow;
@@ -299,11 +300,25 @@
             this.buyChBox.UseStyleColors = true;
             this.buyChBox.UseVisualStyleBackColor = true;
             // 
+            // UprtChBox
+            // 
+            this.UprtChBox.AutoSize = true;
+            this.UprtChBox.Location = new System.Drawing.Point(300, 63);
+            this.UprtChBox.Name = "UprtChBox";
+            this.UprtChBox.Size = new System.Drawing.Size(49, 15);
+            this.UprtChBox.Style = MetroFramework.MetroColorStyle.Yellow;
+            this.UprtChBox.TabIndex = 20;
+            this.UprtChBox.Text = "Упрт";
+            this.UprtChBox.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.UprtChBox.UseStyleColors = true;
+            this.UprtChBox.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(399, 627);
+            this.Controls.Add(this.UprtChBox);
             this.Controls.Add(this.buyChBox);
             this.Controls.Add(this.metroProgressBar1);
             this.Controls.Add(this.nameColTBox);
@@ -358,6 +373,7 @@
         private MetroFramework.Controls.MetroLabel metroLabel6;
         private MetroFramework.Controls.MetroProgressBar metroProgressBar1;
         private MetroFramework.Controls.MetroCheckBox buyChBox;
+        private MetroFramework.Controls.MetroCheckBox UprtChBox;
     }
 }
 
